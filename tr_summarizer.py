@@ -27,6 +27,7 @@ stop_words = stopwords.words('english')
 from sklearn.metrics.pairwise import cosine_similarity
 import re
 import networkx as nx
+from rouge_score_edited import rouge_scorer
 
 #h_sum is our reference summaries for each set of documents. These are extracted from the canvas dataset.
 
@@ -107,7 +108,7 @@ def textrank_summarizer(data, score_select):
 
     full_sum = formatter(full_sum)
     #Py-Rouge evaluation
-    from rouge_score import rouge_scorer
+
 
     tr_scorer = rouge_scorer.RougeScorer(['rouge1', 'rougeLsum'], use_stemmer=True)
     tr_scores = tr_scorer.score(full_sum, h_sum)
